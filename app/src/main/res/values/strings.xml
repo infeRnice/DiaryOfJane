@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">DiaryOfJane</string>
+    <string name="default_text">Выберите дату</string>
+    <string name="recycler_view_description">Календарь со списком дел</string>
+    <string name="task_name">Имя задачи</string>
+    <string name="add_todo_description">Описание кнопки</string> />
+</resources>

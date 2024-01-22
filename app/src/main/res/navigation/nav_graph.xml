@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.diary.ui.fragments.MainScreenFragment"
+        android:label="fragment_main_screen"
+        tools:layout="@layout/main_screen_fragment" />
+
+    <fragment
+        android:id="@+id/createTaskScreen"
+        android:name="com.diary.ui.fragments.TaskCreationFragment"
+        android:label="fragment_task_creation" />
+
+</navigation>
