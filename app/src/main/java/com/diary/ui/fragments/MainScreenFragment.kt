@@ -47,21 +47,9 @@ class MainScreenFragment: Fragment() {
         binding.recyclerViewTasks.adapter = diaryAdapter
         binding.recyclerViewTasks.layoutManager = LinearLayoutManager(context)
 
-        /*binding.btnDatePicker.setOnClickListener {
-
-            val datePicker = MaterialDatePicker.Builder.datePicker().build()
-            datePicker.addOnPositiveButtonClickListener {
-
-                binding.btnDatePicker.text = datePicker.headerText
-                toggleCalendarVisibility()
-            }
-            datePicker.show(childFragmentManager, datePicker.toString())
-        }*/
-
-        /*// Показать CalendarView при нажатии на кнопку
         binding.btnDatePicker.setOnClickListener {
-            binding.calendarView.visibility = if (binding.calendarView.visibility == View.GONE) View.VISIBLE else View.GONE
-        }*/
+            viewModel.toggleCalendarVisibility()
+        }
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.calendarVisibility.collect { isVisible ->
@@ -77,14 +65,6 @@ class MainScreenFragment: Fragment() {
 
         binding.fabAddTask.setOnClickListener {
             findNavController().navigate(R.id.createTaskScreen)
-        }
-    }
-
-    private fun toggleCalendarVisibility() {
-        binding.calendarView.visibility = if (binding.calendarView.visibility == View.GONE) {
-            View.VISIBLE
-        } else {
-            View.GONE
         }
     }
 
