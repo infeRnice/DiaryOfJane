@@ -44,7 +44,7 @@
         android:src="@android:drawable/ic_input_add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintMargin="16dp"
+        android:layout_margin="16dp"
         android:contentDescription="@string/add_todo_description"/>
 
 

@@ -14,7 +14,6 @@ import com.diary.app.DiaryApp
 import com.diary.databinding.MainScreenFragmentBinding
 import com.diary.ui.adapters.DiaryAdapter
 import com.diary.ui.viewmodels.MainViewModel
-import com.google.android.material.datepicker.MaterialDatePicker
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -48,7 +47,7 @@ class MainScreenFragment: Fragment() {
         binding.recyclerViewTasks.adapter = diaryAdapter
         binding.recyclerViewTasks.layoutManager = LinearLayoutManager(context)
 
-        binding.btnDatePicker.setOnClickListener {
+        /*binding.btnDatePicker.setOnClickListener {
 
             val datePicker = MaterialDatePicker.Builder.datePicker().build()
             datePicker.addOnPositiveButtonClickListener {
@@ -57,12 +56,12 @@ class MainScreenFragment: Fragment() {
                 toggleCalendarVisibility()
             }
             datePicker.show(childFragmentManager, datePicker.toString())
-        }
+        }*/
 
-        binding.recyclerViewTasks.apply {
-            adapter = DiaryAdapter()
-            layoutManager = LinearLayoutManager(context)
-        }
+        /*// Показать CalendarView при нажатии на кнопку
+        binding.btnDatePicker.setOnClickListener {
+            binding.calendarView.visibility = if (binding.calendarView.visibility == View.GONE) View.VISIBLE else View.GONE
+        }*/
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.calendarVisibility.collect { isVisible ->
