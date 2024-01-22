@@ -49,11 +49,10 @@ class MainScreenFragment: Fragment() {
 
         binding.btnDatePicker.setOnClickListener {
             viewModel.toggleCalendarVisibility()
-        }
-
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.calendarVisibility.collect { isVisible ->
-                binding.calendarView.visibility = if (isVisible) View.VISIBLE else View.GONE
+            binding.calendarView.visibility = if (binding.calendarView.visibility == View.GONE) {
+                View.VISIBLE
+            } else {
+                View.GONE
             }
         }
 
