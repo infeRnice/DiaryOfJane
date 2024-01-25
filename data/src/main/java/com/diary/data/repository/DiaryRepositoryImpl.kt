@@ -4,6 +4,7 @@ import com.diary.data.dao.TaskDao
 import com.diary.data.model.TaskEntity
 import com.diary.domain.models.Task
 import com.diary.domain.repository.DiaryRepository
+import java.util.Date
 import javax.inject.Inject
 
 class DiaryRepositoryImpl @Inject constructor(
@@ -16,15 +17,21 @@ class DiaryRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getTaskById(id: Int): Task {
-        TODO("Not yet implemented")
+        val taskEntity = taskDao.getTaskById(id)
+        return convertEntityToDomain(taskEntity)
+    }
+
+    override suspend fun getTaskByDate(date: Date): List<Task> {
+        val tasks = taskDao.getTaskByDate(date.time)
+        return tasks.map {convertEntityToDomain(it) }
     }
 
     override suspend fun updateTask(task: Task) {
-        TODO("Not yet implemented")
+        taskDao.updateTask(convertDomainToEntity(task))
     }
 
     override suspend fun deleteTask(task: Task) {
-        TODO("Not yet implemented")
+        taskDao.deleteTask(convertDomainToEntity(task))
     }
 
     fun convertEntityToDomain(taskEntity: TaskEntity): Task {

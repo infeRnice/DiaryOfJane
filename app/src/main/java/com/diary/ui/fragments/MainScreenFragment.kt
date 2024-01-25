@@ -15,6 +15,7 @@ import com.diary.databinding.MainScreenFragmentBinding
 import com.diary.ui.adapters.DiaryAdapter
 import com.diary.ui.viewmodels.MainViewModel
 import kotlinx.coroutines.launch
+import java.util.Calendar
 import javax.inject.Inject
 
 
@@ -55,6 +56,13 @@ class MainScreenFragment: Fragment() {
             viewModel.calendarVisibility.collect { isVisible ->
                 binding.calendarView.visibility = if (isVisible) View.VISIBLE else View.GONE
             }
+        }
+
+        binding.calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
+            val date = Calendar.getInstance().apply {
+                set(year, month, dayOfMonth)
+            }.time
+            viewModel.loadTasksForDate(date)
         }
 
         viewLifecycleOwner.lifecycleScope.launch {

@@ -20,6 +20,10 @@ class MainViewModel @Inject constructor(
     private val _calendarVisibility = MutableStateFlow(true)
     val calendarVisibility: StateFlow<Boolean> = _calendarVisibility.asStateFlow()
 
+    init {
+        loadTasksForDate(Date())
+    }
+
     fun createTask(task: Task) {
         viewModelScope.launch {
             repository.addTask(task)
@@ -28,9 +32,10 @@ class MainViewModel @Inject constructor(
     }
 
     fun loadTasksForDate(date: Date) {
-        // Загрузка задач для выбранной даты
-        // Это может быть вызов к репозиторию, который будет получать данные
-        // Здесь нужно использовать viewModelScope для запуска корутин
+        viewModelScope.launch {
+            val taskForDate = repository.getTaskByDate(date)
+            _tasks.value = taskForDate
+        }
     }
 
     fun toggleCalendarVisibility() {
