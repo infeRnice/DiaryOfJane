@@ -2,13 +2,14 @@ package com.diary.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.diary.R
 import com.diary.domain.models.Task
+import com.diary.ui.diffutils.TaskDiffCallback
 import com.diary.ui.viewholders.DiaryViewHolder
 
 class DiaryAdapter() : RecyclerView.Adapter<DiaryViewHolder>() {
-
     private var items: List<Task> = listOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DiaryViewHolder {
@@ -24,7 +25,10 @@ class DiaryAdapter() : RecyclerView.Adapter<DiaryViewHolder>() {
     override fun getItemCount() = items.size
 
     fun setItems(newItems: List<Task>) {
+        val diffCallback = TaskDiffCallback(items, newItems)
+        val diffResult = DiffUtil.calculateDiff(diffCallback)
+
         items = newItems
-        notifyDataSetChanged()
+        diffResult.dispatchUpdatesTo(this)
     }
 }

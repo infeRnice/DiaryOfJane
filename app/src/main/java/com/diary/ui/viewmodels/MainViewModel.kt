@@ -17,7 +17,7 @@ class MainViewModel @Inject constructor(
     private val _tasks = MutableStateFlow<List<Task>>(emptyList())
     val tasks: StateFlow<List<Task>> = _tasks
 
-    private val _calendarVisibility = MutableStateFlow(false)
+    private val _calendarVisibility = MutableStateFlow(true)
     val calendarVisibility: StateFlow<Boolean> = _calendarVisibility.asStateFlow()
 
     fun createTask(task: Task) {
