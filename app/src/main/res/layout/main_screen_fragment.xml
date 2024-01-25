@@ -7,7 +7,7 @@
 
     <!-- Кнопка для отображения и выбора даты -->
     <Button
-            android:id="@+id/btnDatePicker"
+        android:id="@+id/btnDatePicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/default_text"

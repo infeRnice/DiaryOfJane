@@ -6,6 +6,7 @@ import com.diary.domain.models.Task
 import com.diary.domain.repository.DiaryRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import java.util.Date
 import javax.inject.Inject
@@ -17,7 +18,7 @@ class MainViewModel @Inject constructor(
     val tasks: StateFlow<List<Task>> = _tasks
 
     private val _calendarVisibility = MutableStateFlow(false)
-    val calendarVisibility: StateFlow<Boolean> = _calendarVisibility
+    val calendarVisibility: StateFlow<Boolean> = _calendarVisibility.asStateFlow()
 
     fun createTask(task: Task) {
         viewModelScope.launch {
