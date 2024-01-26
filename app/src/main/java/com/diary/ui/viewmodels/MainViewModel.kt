@@ -1,5 +1,6 @@
 package com.diary.ui.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.diary.domain.models.Task
@@ -17,7 +18,7 @@ class MainViewModel @Inject constructor(
     private val _tasks = MutableStateFlow<List<Task>>(emptyList())
     val tasks: StateFlow<List<Task>> = _tasks
 
-    private val _calendarVisibility = MutableStateFlow(true)
+    private val _calendarVisibility = MutableStateFlow(false)
     val calendarVisibility: StateFlow<Boolean> = _calendarVisibility.asStateFlow()
 
     init {
@@ -40,5 +41,6 @@ class MainViewModel @Inject constructor(
 
     fun toggleCalendarVisibility() {
         _calendarVisibility.value = !_calendarVisibility.value
+        Log.d("ViewModel", "Calendar visibility toggled: ${_calendarVisibility.value}")
     }
 }

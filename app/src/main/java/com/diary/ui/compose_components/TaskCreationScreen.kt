@@ -1,10 +1,6 @@
 package com.diary.ui.compose_components
 
-import android.app.Activity
 import android.app.DatePickerDialog
-import androidx.activity.compose.rememberLauncherForActivityResult
-import androidx.activity.result.ActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -69,7 +65,8 @@ fun TaskCreationScreen(onTaskCreated: (Task) -> Unit) {
         modifier = Modifier
             .fillMaxSize()
             .background(Color.White)
-            .wrapContentSize(Alignment.Center)
+            .wrapContentSize(Alignment.Center),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         TextField(
             value = taskName,

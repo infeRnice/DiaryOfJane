@@ -1,5 +1,6 @@
 package com.diary.ui.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -30,5 +31,6 @@ class DiaryAdapter() : RecyclerView.Adapter<DiaryViewHolder>() {
 
         items = newItems
         diffResult.dispatchUpdatesTo(this)
+        Log.d("RecyclerView", "Items updated in RecyclerView")
     }
 }

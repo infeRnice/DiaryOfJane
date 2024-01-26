@@ -1,6 +1,7 @@
 package com.diary.ui.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,6 +21,8 @@ import javax.inject.Inject
 
 
 class MainScreenFragment: Fragment() {
+
+    private var calendarDisplayCount = 0
 
     private var _binding: MainScreenFragmentBinding? = null
     private val binding get() = _binding!!
@@ -50,11 +53,15 @@ class MainScreenFragment: Fragment() {
 
         binding.btnDatePicker.setOnClickListener {
             viewModel.toggleCalendarVisibility()
+            Log.d("Button", "Date Picker Button Clicked")
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.calendarVisibility.collect { isVisible ->
+                calendarDisplayCount++
+                Log.d("CalendarCount", "Calendar display count: $calendarDisplayCount")
                 binding.calendarView.visibility = if (isVisible) View.VISIBLE else View.GONE
+                Log.d("Fragment", "Calendar visibility set to: $isVisible")
             }
         }
 
@@ -63,6 +70,7 @@ class MainScreenFragment: Fragment() {
                 set(year, month, dayOfMonth)
             }.time
             viewModel.loadTasksForDate(date)
+            Log.d("loadTasksForDate", "Tried to load tasks for date: $date")
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
